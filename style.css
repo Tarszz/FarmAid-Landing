@@ -1,0 +1,205 @@
+/* Color palette from Tailwind-inspired design */
+:root {
+  --green-primary: hsl(142, 76%, 36%);
+  --green-light: hsl(142, 70%, 45%);
+  --green-accent: hsl(142, 70%, 30%);
+  --white: #ffffff;
+  --text-dark: hsl(222, 47%, 11%);
+  --gray: hsl(215, 16%, 46%);
+  --radius: 12px;
+}
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--white);
+  color: var(--text-dark);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--green-primary);
+  color: var(--white);
+  padding: 15px 10%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-links a {
+  color: var(--white);
+  margin: 0 15px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #d9fdd3;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 10%;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 500px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: var(--green-primary);
+}
+
+.hero-content p {
+  margin: 15px 0 30px;
+  color: var(--gray);
+}
+
+.download-buttons .btn {
+  margin-right: 15px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  background: var(--green-primary);
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--green-light);
+  transform: scale(1.05);
+}
+
+/* Hero Image */
+.hero-image img {
+  width: 400px;
+  max-width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.03);
+}
+
+/* Features */
+.features {
+  text-align: center;
+  padding: 60px 10%;
+  background: #f6fef7;
+}
+
+.features h2 {
+  color: var(--green-primary);
+  margin-bottom: 40px;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+.feature-card {
+  background: var(--white);
+  padding: 25px;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.feature-card:hover {
+  background: var(--green-light);
+  color: var(--white);
+  transform: translateY(-5px);
+}
+
+/* About Section */
+.about {
+  padding: 60px 10%;
+  text-align: center;
+}
+
+.about h2 {
+  color: var(--green-primary);
+  margin-bottom: 20px;
+}
+
+.about p {
+  color: var(--gray);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Download Section */
+.download {
+  text-align: center;
+  background: var(--green-primary);
+  color: var(--white);
+  padding: 70px 10%;
+}
+
+.download h2 {
+  font-size: 2rem;
+}
+
+.download p {
+  margin: 20px 0;
+}
+
+.download .btn {
+  background: var(--white);
+  color: var(--green-primary);
+  font-weight: bold;
+}
+
+.download .btn:hover {
+  background: #d9fdd3;
+}
+
+/* Footer */
+.footer {
+  background: var(--green-accent);
+  color: var(--white);
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+}
