@@ -59,21 +59,41 @@ body {
   padding: 60px 10%;
   flex-wrap: wrap;
   gap: 30px;
+  background-image: url('images/image1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 }
 
 .hero-content {
   flex: 1;
   max-width: 500px;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-content h1 {
   font-size: 2.5rem;
-  color: var(--green-primary);
+  color: var(--white);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-content p {
   margin: 15px 0 30px;
-  color: var(--gray);
+  color: var(--white);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .download-buttons .btn {
@@ -96,8 +116,14 @@ body {
 }
 
 /* Hero Image */
+.hero-image {
+  position: relative;
+  z-index: 4;
+  margin-left: -50px;
+}
+
 .hero-image img {
-  width: 400px;
+  width: 750px;
   max-width: 100%;
   border-radius: var(--radius);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
