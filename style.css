@@ -1,4 +1,6 @@
-/* Color palette */
+/* =======================================
+   Color Palette
+======================================= */
 :root {
   --green-primary: hsl(142, 76%, 36%);
   --green-light: hsl(142, 70%, 45%);
@@ -9,7 +11,9 @@
   --radius: 12px;
 }
 
-/* Global styles */
+/* =======================================
+   Global Styles
+======================================= */
 * {
   margin: 0;
   padding: 0;
@@ -22,7 +26,9 @@ body {
   color: var(--text-dark);
 }
 
-/* Navbar */
+/* =======================================
+   Navbar
+======================================= */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -32,18 +38,28 @@ body {
   padding: 15px 10%;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  flex-wrap: wrap;
+  position: relative; /* needed for absolute toggle */
 }
 
 .logo {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .nav-links a {
   color: var(--white);
-  margin: 0 15px;
   text-decoration: none;
+  font-weight: 500;
   transition: color 0.3s ease;
 }
 
@@ -51,7 +67,34 @@ body {
   color: #d9fdd3;
 }
 
-/* Hero Section */
+/* Hamburger Menu Button */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+  justify-content: space-between;
+
+  /* keep it top-right */
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  z-index: 1001; /* above nav-links */
+}
+
+.nav-toggle span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: var(--white);
+  border-radius: 3px;
+}
+
+/* =======================================
+   Hero Section
+======================================= */
 .hero {
   display: flex;
   justify-content: space-between;
@@ -134,7 +177,9 @@ body {
   transform: scale(1.03);
 }
 
-/* Features */
+/* =======================================
+   Features Section
+======================================= */
 .features {
   text-align: center;
   padding: 60px 10%;
@@ -157,47 +202,72 @@ body {
   padding: 25px;
   border-radius: var(--radius);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s, background 0.3s;
+  transition: transform 0.5s, background 0.5s, box-shadow 0.5s, opacity 0.5s;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.feature-card:hover {
+.feature-card.highlight {
   background: var(--green-light);
   color: var(--white);
   transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 }
 
-/* About Section */
+/* =======================================
+   About Section
+======================================= */
 .about {
   padding: 60px 10%;
   text-align: center;
+  transition: transform 0.5s, opacity 0.5s;
 }
 
-.about h2 {
-  color: var(--green-primary);
-  margin-bottom: 20px;
+.about.highlight {
+  transform: translateY(-10px);
+  opacity: 1;
 }
 
-.about p {
-  color: var(--gray);
-  max-width: 700px;
-  margin: 0 auto;
-  line-height: 1.6;
+/* =======================================
+   Global Scroll Animations
+======================================= */
+.feature-card,
+.about,
+.download {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
 }
 
-/* Download Section */
+.feature-card.highlight,
+.about.highlight,
+.download.highlight {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: stagger feature cards */
+.feature-grid .feature-card:nth-child(1) { transition-delay: 0.1s; }
+.feature-grid .feature-card:nth-child(2) { transition-delay: 0.2s; }
+.feature-grid .feature-card:nth-child(3) { transition-delay: 0.3s; }
+.feature-grid .feature-card:nth-child(4) { transition-delay: 0.4s; }
+
+/* =======================================
+   Download Section
+======================================= */
 .download {
   text-align: center;
   background: var(--green-primary);
   color: var(--white);
-  padding: 70px 10%;
+  padding: 70px 10% 120px; /* extra bottom padding to avoid footer overlap */
+  transition: transform 0.5s, opacity 0.5s;
+  position: relative;
+  z-index: 1;
 }
 
-.download h2 {
-  font-size: 2rem;
-}
-
-.download p {
-  margin: 20px 0;
+.download.highlight {
+  transform: translateY(-10px);
+  opacity: 1;
 }
 
 .download .btn {
@@ -210,145 +280,55 @@ body {
   background: #d9fdd3;
 }
 
-/* Footer */
+/* =======================================
+   Footer
+======================================= */
 .footer {
   background: var(--green-accent);
   color: var(--white);
   text-align: center;
-  padding: 20px;
+  padding: 25px 10%;
   font-size: 0.9rem;
-}
-.features
-/* Responsive */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-content {
-    max-width: 100%;
-  }
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
 }
 
-@media (max-width: 1024px) {
-  .hero {
-    padding: 40px 4%;
-    gap: 20px;
-  }
-  .hero-image img {
-    width: 400px;
-    margin-left: 0;
-  }
-}
-
+/* =======================================
+   Responsive Adjustments
+======================================= */
 @media (max-width: 768px) {
-  .hero {
-    padding: 30px 2%;
+  .hero { flex-direction: column; text-align: center; padding: 30px 2%; }
+  .hero-content { max-width: 100%; }
+  .hero-image { margin-left: 0; }
+  .hero-image img { width: 90vw; max-width: 350px; }
+  .hero-content h1 { font-size: 2rem; }
+
+  /* Navbar adjustments */
+  .nav-links {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    display: none;
+    margin-top: 50px; /* push dropdown below header */
   }
-  .hero-image {
-    margin-left: 0;
-  }
-  .hero-image img {
-    width: 90vw;
-    max-width: 350px;
-  }
-  .hero-content h1 {
-    font-size: 2rem;
-  }
+  .nav-links.active { display: flex; flex-direction: column; gap: 15px; }
+  .nav-toggle { display: flex; }
 }
 
 @media (max-width: 480px) {
-  .hero {
-    padding: 20px 1%;
-    gap: 10px;
-  }
-  .hero-image img {
-    width: 95vw;
-    max-width: 250px;
-  }
-  .hero-content h1 {
-    font-size: 1.3rem;
-  }
-  .download-buttons .btn {
-    margin-right: 8px;
-    padding: 10px 16px;
-    font-size: 0.95rem;
-  }
+  .hero { padding: 20px 5%; gap: 10px; }
+  .hero-image img { width: 95vw; max-width: 180px; }
+  .hero-content h1 { font-size: 1.3rem; }
+  .download-buttons .btn { margin-right: 8px; padding: 10px 16px; font-size: 0.95rem; }
+  .logo { font-size: 1.2rem; }
+  .nav-links a { font-size: 0.85rem; padding: 6px 10px; }
+  .footer { padding: 25px 0%; font-size: 0.75rem; line-height: 1.4; }
 }
 
-/* Features Page */
-.features-page {
-  text-align: center;
-  padding: 60px 10%;
-  background: #f6fef7;
-}
-
-.features-page h2 {
-  color: var(--green-primary);
-  margin-bottom: 40px;
-}
-
-.features-page .feature-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-}
-
-/* About Page */
-.about-page {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 60px 10%;
-  gap: 40px;
-  flex-wrap: wrap;
-  background-color: #f9fff9;
-}
-
-.about-page .about-content {
-  flex: 1;
-  max-width: 600px;
-}
-
-.about-page .about-image img {
-  width: 100%;
-  max-width: 450px;
-  border-radius: var(--radius);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .about-page {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-page .about-image img {
-    max-width: 90%;
-  }
-
-  .features-page {
-    padding: 40px 5%;
-  }
-
-  .features-page h2 {
-    font-size: 1.8rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-page,
-  .features-page {
-    padding: 30px 4%;
-  }
-
-  .features-page h2,
-  .about-page h2 {
-    font-size: 1.6rem;
-  }
-
-  .feature-card {
-    padding: 20px;
-  }
+@media (max-width: 375px) {
+  .logo { font-size: 1.1rem; }
+  .nav-links a { font-size: 0.8rem; padding: 5px 8px; }
+  .navbar { padding: 8px 3%; }
+  .footer { padding: 25px 3%; font-size: 0.75rem; line-height: 1.4; }
 }

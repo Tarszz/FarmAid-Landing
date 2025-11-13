@@ -16,6 +16,21 @@
       <a href="https://farmaidapplicationdownload.s3.us-east-1.amazonaws.com/app-release.apk">Download</a>
       <a href="about.html">About</a>
     </nav>
+    <div class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
   </header>
 
   <!-- About Section -->
@@ -45,6 +60,7 @@
         <p>To empower farmers by providing digital tools that connect them directly with donors, markets, and communities in need.</p>
       </div>
     </div>
+    
   </section>
 
   <!-- CTA -->

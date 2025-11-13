@@ -16,6 +16,21 @@
       <a href="https://farmaidapplicationdownload.s3.us-east-1.amazonaws.com/app-release.apk">Download</a>
       <a href="about.html">About</a>
     </nav>
+    <div class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
   </header>
 
   <!-- Features Section -->
