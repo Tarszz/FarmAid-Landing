@@ -40,7 +40,6 @@ body {
   top: 0;
   z-index: 1000;
   flex-wrap: wrap;
-  position: relative; /* needed for absolute toggle */
 }
 
 .logo {
@@ -49,7 +48,6 @@ body {
   white-space: nowrap;
 }
 
-/* Nav Links */
 .nav-links {
   display: flex;
   align-items: center;
@@ -75,13 +73,6 @@ body {
   width: 25px;
   height: 20px;
   justify-content: space-between;
-
-  /* keep it top-right */
-  position: absolute;
-  top: 50%;
-  right: 10%;
-  transform: translateY(-50%);
-  z-index: 1001; /* above nav-links */
 }
 
 .nav-toggle span {
@@ -203,8 +194,8 @@ body {
   border-radius: var(--radius);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   transition: transform 0.5s, background 0.5s, box-shadow 0.5s, opacity 0.5s;
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; /* visible by default */
+  transform: translateY(0); /* visible by default */
 }
 
 .feature-card.highlight {
@@ -227,14 +218,13 @@ body {
   transform: translateY(-10px);
   opacity: 1;
 }
-
 /* =======================================
-   Global Scroll Animations
+   Global Animation for Scroll
 ======================================= */
 .feature-card,
 .about,
 .download {
-  opacity: 0;
+  opacity: 10;
   transform: translateY(50px);
   transition: transform 0.6s ease-out, opacity 0.6s ease-out;
 }
@@ -247,10 +237,19 @@ body {
 }
 
 /* Optional: stagger feature cards */
-.feature-grid .feature-card:nth-child(1) { transition-delay: 0.1s; }
-.feature-grid .feature-card:nth-child(2) { transition-delay: 0.2s; }
-.feature-grid .feature-card:nth-child(3) { transition-delay: 0.3s; }
-.feature-grid .feature-card:nth-child(4) { transition-delay: 0.4s; }
+.feature-grid .feature-card:nth-child(1) {
+  transition-delay: 0.1s;
+}
+.feature-grid .feature-card:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.feature-grid .feature-card:nth-child(3) {
+  transition-delay: 0.3s;
+}
+.feature-grid .feature-card:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
 
 /* =======================================
    Download Section
@@ -259,17 +258,19 @@ body {
   text-align: center;
   background: var(--green-primary);
   color: var(--white);
-  padding: 70px 10% 120px; /* extra bottom padding to avoid footer overlap */
+  padding: 70px 10% 100px; /* extra bottom padding to avoid footer overlap */
   transition: transform 0.5s, opacity 0.5s;
-  position: relative;
+  position: relative; /* ensures section stays in normal flow */
   z-index: 1;
 }
 
+/* Scroll highlight */
 .download.highlight {
   transform: translateY(-10px);
   opacity: 1;
 }
 
+/* Download button styling */
 .download .btn {
   background: var(--white);
   color: var(--green-primary);
@@ -279,6 +280,7 @@ body {
 .download .btn:hover {
   background: #d9fdd3;
 }
+
 
 /* =======================================
    Footer
@@ -290,45 +292,104 @@ body {
   padding: 25px 10%;
   font-size: 0.9rem;
   line-height: 1.4;
-  position: relative;
+  position: relative; /* stays at the bottom of content */
   z-index: 2;
+
 }
 
 /* =======================================
    Responsive Adjustments
 ======================================= */
 @media (max-width: 768px) {
-  .hero { flex-direction: column; text-align: center; padding: 30px 2%; }
-  .hero-content { max-width: 100%; }
-  .hero-image { margin-left: 0; }
-  .hero-image img { width: 90vw; max-width: 350px; }
-  .hero-content h1 { font-size: 2rem; }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 30px 2%;
+  }
+  .hero-content {
+    max-width: 100%;
+  }
+  .hero-image {
+    margin-left: 0;
+  }
+  .hero-image img {
+    width: 90vw;
+    max-width: 350px;
+  }
+  .hero-content h1 {
+    font-size: 2rem;
+  }
 
   /* Navbar adjustments */
   .nav-links {
     width: 100%;
     justify-content: center;
     flex-wrap: wrap;
-    display: none;
-    margin-top: 50px; /* push dropdown below header */
+    display: none; /* Hidden initially, toggled by JS */
   }
-  .nav-links.active { display: flex; flex-direction: column; gap: 15px; }
-  .nav-toggle { display: flex; }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+  }
 }
 
 @media (max-width: 480px) {
-  .hero { padding: 20px 5%; gap: 10px; }
-  .hero-image img { width: 95vw; max-width: 180px; }
-  .hero-content h1 { font-size: 1.3rem; }
-  .download-buttons .btn { margin-right: 8px; padding: 10px 16px; font-size: 0.95rem; }
-  .logo { font-size: 1.2rem; }
-  .nav-links a { font-size: 0.85rem; padding: 6px 10px; }
-  .footer { padding: 25px 0%; font-size: 0.75rem; line-height: 1.4; }
+  .hero {
+    padding: 20px 5%;
+    gap: 10px;
+  }
+  .hero-image img {
+    width: 95vw;
+    max-width: 180px;
+  }
+  .hero-content h1 {
+    font-size: 1.3rem;
+  }
+  .download-buttons .btn {
+    margin-right: 8px;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
+  }
+
+  .nav-links a {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .footer {
+    padding: 25px 0%;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
 }
 
 @media (max-width: 375px) {
-  .logo { font-size: 1.1rem; }
-  .nav-links a { font-size: 0.8rem; padding: 5px 8px; }
-  .navbar { padding: 8px 3%; }
-  .footer { padding: 25px 3%; font-size: 0.75rem; line-height: 1.4; }
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    padding: 5px 8px;
+  }
+
+  .navbar {
+    padding: 8px 3%;
+  }
+  .footer {
+    padding: 25px 3%;
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
 }
